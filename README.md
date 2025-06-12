@@ -1,4 +1,4 @@
-# Check_Eventos
+# Check_Events
 Aplicação web de gerenciamento de Eventos
 
 
