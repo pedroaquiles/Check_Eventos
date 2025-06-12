@@ -1,0 +1,39 @@
+/* css/home.css */
+
+#home-screen .home-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1; /* Permite que o conteúdo ocupe o espaço restante */
+    padding: 20px 0; /* Padding vertical para espaçamento */
+}
+
+#home-screen h1 {
+    font-size: 2.8rem;
+    color: #007bff;
+    margin-bottom: 15px;
+}
+
+#home-screen .tagline {
+    font-size: 1.4rem;
+    color: #555;
+    margin-bottom: 30px;
+}
+
+/* Ajuste para cabeçalho da app-screen em mobile */
+@media (max-width: 767px) {
+    #home-screen .home-content {
+        padding-top: 20px; /* Ajusta padding para navbar fixa */
+    }
+}
+
+@media (min-width: 768px) {
+    #home-screen h1 {
+        font-size: 3.5rem;
+    }
+
+    #home-screen .tagline {
+        font-size: 1.8rem;
+    }
+}

@@ -1,0 +1,76 @@
+/* css/relatorio.css */
+
+#relatorio-screen header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 15px 20px;
+    border-bottom: 1px solid #eee;
+    background-color: #f8f9fa;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+#relatorio-screen header h2 {
+    font-size: 1.8rem;
+    color: #007bff;
+}
+
+#relatorio-details {
+    width: 100%;
+    text-align: left;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #eee;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    margin-top: 20px;
+}
+
+#relatorio-details p {
+    margin-bottom: 10px;
+    line-height: 1.6;
+}
+
+#relatorio-details strong {
+    color: #007bff;
+}
+
+#relatorio-details ul {
+    list-style: none;
+    padding-left: 20px;
+    margin-top: 10px;
+}
+
+#relatorio-details ul li {
+    margin-bottom: 5px;
+    color: #555;
+    word-break: break-all; /* Quebra URLs longas */
+}
+
+#relatorio-details .video-link {
+    color: #007bff;
+    text-decoration: none;
+}
+
+#relatorio-details .video-link:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 767px) {
+    #relatorio-screen header h2 {
+        font-size: 1.3rem;
+    }
+    #relatorio-screen header {
+        flex-direction: column;
+        gap: 10px;
+    }
+    #relatorio-screen header button {
+        margin-left: 0;
+    }
+    #relatorio-details {
+        padding: 15px;
+    }
+}
