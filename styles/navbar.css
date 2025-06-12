@@ -1,0 +1,102 @@
+/* css/navbar.css */
+
+.navbar {
+    background-color: #007bff;
+    color: white;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    flex-shrink: 0; /* Não permite que a navbar encolha */
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.navbar-brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.navbar-menu {
+    list-style: none;
+    display: flex;
+    align-items: center;
+}
+
+.navbar-menu li {
+    margin-left: 20px;
+}
+
+.navbar-toggle {
+    display: none; /* Escondido por padrão em desktop */
+    flex-direction: column;
+    cursor: pointer;
+    gap: 4px;
+}
+
+.navbar-toggle .icon-bar {
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    transition: all 0.3s ease;
+}
+
+/* Ícone de Login SVG */
+.icon-login {
+    margin-left: 5px;
+    vertical-align: middle;
+}
+
+/* --- Responsividade da Navbar --- */
+@media (max-width: 767px) {
+    .navbar-menu {
+        display: none; /* Esconde o menu em mobile */
+        flex-direction: column;
+        width: 100%;
+        position: absolute;
+        top: 60px; /* Abaixo da navbar */
+        left: 0;
+        background-color: #007bff; /* Mesma cor da navbar */
+        padding: 10px 0;
+        border-bottom-left-radius: 8px;
+        border-bottom-right-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+
+    .navbar-menu.active {
+        display: flex; /* Mostra o menu quando ativo */
+    }
+
+    .navbar-menu li {
+        margin: 0;
+        width: 100%;
+        text-align: center;
+        padding: 10px 0;
+    }
+
+    .navbar-menu li:hover {
+        background-color: #0056b3; /* Cor de hover para itens do menu */
+    }
+
+    .navbar-menu li button {
+        display: block; /* Ocupa toda a largura do item */
+        width: 100%;
+        padding: 10px;
+    }
+
+    .navbar-toggle {
+        display: flex; /* Mostra o botão de hambúrguer */
+    }
+
+    /* Animação do ícone de hambúrguer */
+    .navbar-toggle.active .icon-bar:nth-child(1) {
+        transform: translateY(7px) rotate(45deg);
+    }
+    .navbar-toggle.active .icon-bar:nth-child(2) {
+        opacity: 0;
+    }
+    .navbar-toggle.active .icon-bar:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg);
+    }
+}

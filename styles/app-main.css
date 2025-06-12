@@ -1,0 +1,116 @@
+/* css/app-main.css */
+
+/* Header da Aplicação */
+#app-screen header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 15px 20px; /* Padding similar à navbar */
+    border-bottom: 1px solid #eee;
+    background-color: #f8f9fa; /* Cor de fundo para o cabeçalho */
+    border-top-left-radius: 8px; /* Arredondamento */
+    border-top-right-radius: 8px;
+}
+
+#app-screen header h1 {
+    font-size: 2rem;
+    color: #007bff;
+}
+
+/* Controles de Eventos (Filtro de Data) */
+.event-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 25px;
+    align-items: flex-end;
+    width: 100%;
+}
+
+.event-controls .form-group {
+    flex: 1 1 200px;
+    margin-bottom: 0;
+    max-width: unset;
+}
+
+.event-controls button {
+    flex-grow: 1;
+    min-width: 150px;
+    margin-top: 0;
+}
+
+/* Lista de Eventos */
+#events-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+    width: 100%;
+}
+
+#events-list li {
+    background-color: #f9f9f9;
+    border: 1px solid #eee;
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    text-align: left;
+}
+
+#events-list li strong {
+    color: #007bff;
+    font-size: 1.1rem;
+}
+
+#events-list li span {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+/* --- Responsividade da App Screen --- */
+@media (max-width: 767px) {
+    #app-screen header h1 {
+        font-size: 1.5rem;
+    }
+
+    .event-controls {
+        flex-direction: column;
+        align-items: center;
+    }
+    .event-controls .form-group,
+    .event-controls button {
+        width: 100%;
+        max-width: 300px;
+    }
+}
+
+@media (min-width: 768px) {
+    #app-screen header h1 {
+        font-size: 2.5rem;
+    }
+
+    .event-controls {
+        flex-wrap: nowrap;
+    }
+
+    .event-controls .form-group {
+        flex: 0 1 auto;
+        max-width: 250px;
+    }
+
+    .event-controls button {
+        flex-grow: 0;
+        min-width: unset;
+    }
+
+    #events-list li {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+}
