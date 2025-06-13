@@ -1,10 +1,6 @@
-// modules/relatorio.js
-
 /**
- * Formata uma string de data ISO para um formato mais legível.
- * (Função auxiliar, duplicada para autossuficiência do módulo)
- * @param {string} isoString A string de data no formato ISO.
- * @returns {string} A data formatada.
+ * @param {string} isoString
+ * @returns {string}
  */
 function formatDateTime(isoString) {
     if (!isoString) return 'Data não disponível';
@@ -23,16 +19,14 @@ function formatDateTime(isoString) {
 }
 
 /**
- * Inicializa a tela de Relatório, exibindo os detalhes do evento.
- * @param {HTMLElement} relatorioScreen O elemento da tela de relatório.
- * @param {HTMLElement} relatorioDetails O contêiner para exibir os detalhes.
- * @param {HTMLElement} backToEventsButton O botão para voltar à tela de eventos.
- * @param {Function} onBackToEvents Callback para quando o botão de voltar é clicado.
+ * @param {HTMLElement} relatorioScreen
+ * @param {HTMLElement} relatorioDetails
+ * @param {HTMLElement} backToEventsButton
+ * @param {Function} onBackToEvents
  */
 export function initRelatorioScreen(relatorioScreen, relatorioDetails, backToEventsButton, onBackToEvents) {
     /**
-     * Renderiza os detalhes de um evento específico.
-     * @param {Object} event O objeto do evento a ser exibido.
+     * @param {Object} event
      */
     function renderEventDetails(event) {
         if (!relatorioDetails) return;
@@ -75,12 +69,10 @@ export function initRelatorioScreen(relatorioScreen, relatorioDetails, backToEve
         `;
     }
 
-    // Adiciona o event listener para o botão "Voltar aos Eventos"
     if (backToEventsButton) {
         backToEventsButton.addEventListener('click', onBackToEvents);
     }
 
-    // Retorna a função para renderizar detalhes, para que o App.js possa chamá-la
     return {
         renderEventDetails: renderEventDetails
     };

@@ -1,17 +1,15 @@
 /**
- * Inicializa a tela de Login, configurando seus event listeners e lógica.
- *
- * @param {HTMLElement} loginScreen O elemento da tela de Login.
- * @param {HTMLElement} loginInput O campo de input para o login.
- * @param {HTMLElement} passwordInput O campo de input para a senha.
- * @param {HTMLElement} loginButton O botão de login.
- * @param {HTMLElement} loginMessage O elemento para exibir mensagens de feedback.
- * @param {HTMLElement} backToHomeButton O botão para voltar à tela Home.
- * @param {string} apiBaseUrl A URL base da API.
- * @param {string} authTokenKey A chave para armazenar o token no localStorage.
- * @param {Function} onLoginSuccess Callback para quando o login for bem-sucedido.
- * @param {Function} onBackToHome Callback para quando o botão de voltar for clicado.
- * @param {Function} displayMessageFn Função auxiliar para exibir mensagens.
+ * @param {HTMLElement} loginScreen
+ * @param {HTMLElement} loginInput
+ * @param {HTMLElement} passwordInput
+ * @param {HTMLElement} loginButton
+ * @param {HTMLElement} loginMessage
+ * @param {HTMLElement} backToHomeButton
+ * @param {string} apiBaseUrl
+ * @param {string} authTokenKey
+ * @param {Function} onLoginSuccess
+ * @param {Function} onBackToHome
+ * @param {Function} displayMessageFn
  */
 export function initLoginScreen(
     loginScreen,
@@ -26,9 +24,6 @@ export function initLoginScreen(
     onBackToHome,
     displayMessageFn
 ) {
-    /**
-     * Lida com a tentativa de login.
-     */
     async function handleLogin() {
         const login = loginInput.value.trim();
         const password = passwordInput.value.trim();
@@ -62,10 +57,6 @@ export function initLoginScreen(
 
                 localStorage.setItem(authTokenKey, token);
 
-                // 🔍 Debug opcional:
-                console.log('Token salvo:', token);
-                alert(`Token JWT:\n${token}`);
-
                 displayMessageFn(loginMessage, 'Login realizado com sucesso!', 'success');
                 onLoginSuccess();
             } else {
@@ -81,7 +72,6 @@ export function initLoginScreen(
         }
     }
 
-    // Listeners
     if (loginButton) {
         loginButton.addEventListener('click', handleLogin);
     }

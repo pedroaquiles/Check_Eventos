@@ -1,10 +1,19 @@
-export function formatDateTimeForDisplay(dateString) {
-    if (!dateString) return 'Data não disponível';
+const SEEN_EVENTS_KEY = 'seenEvents';
 
+function loadSeenEvents() {
+    const seenEventsJson = localStorage.getItem(SEEN_EVENTS_KEY);
+    return new Set(seenEventsJson ? JSON.parse(seenEventsJson) : []);
+}
+
+function saveSeenEvents(seenEventsSet) {
+    localStorage.setItem(SEEN_EVENTS_KEY, JSON.stringify(Array.from(seenEventsSet)));
+}
+
+function formatDateTimeForDisplay(dateString) {
+    if (!dateString) return 'Data não disponível';
     const parsed = dateString.includes(' ') ? dateString.replace(' ', 'T') : dateString;
     const date = new Date(parsed);
     if (isNaN(date.getTime())) return 'Data inválida';
-
     return date.toLocaleString('pt-BR', {
         year: 'numeric',
         month: 'long',
@@ -15,6 +24,7 @@ export function formatDateTimeForDisplay(dateString) {
         hour12: false
     });
 }
+export { formatDateTimeForDisplay };
 
 function formatDateTimeForAPI(dateObj) {
     const pad = n => n.toString().padStart(2, '0');
@@ -35,31 +45,59 @@ function setDefaultDateFilters(startInput, endInput) {
     if (endInput) endInput.value = format(now);
 }
 
-function renderEvents(events, eventsList, eventsMessage, displayMessage, onEventSelect) {
-    eventsList.innerHTML = '';
+function renderEvents(events, eventsList, eventsMessage, displayMessageFn, onEventDetailsSelect, onEventSeenChange) {
+    if (eventsList) eventsList.innerHTML = '';
 
     if (!events || events.length === 0) {
-        displayMessage(eventsMessage, 'Nenhum evento encontrado para o período selecionado.', 'success');
+        displayMessageFn(eventsMessage, 'Nenhum evento encontrado para o período selecionado.', 'success');
         return;
     }
+
+    const seenEvents = loadSeenEvents();
 
     events.forEach(event => {
         const li = document.createElement('li');
         li.classList.add('event-item-card');
+        li.dataset.eventId = event.idEvent;
 
         const marketName = event.market?.nome || 'Local desconhecido';
         const camHtml = event.videos?.length
             ? event.videos.map(v => `<span>Câmera: ${v.camName || 'Desconhecida'}</span>`).join('')
             : '<span>Nenhuma câmera associada.</span>';
+        
+        const isSeen = seenEvents.has(String(event.idEvent));
 
         li.innerHTML = `
-            <strong>Local: ${marketName}</strong>
-            <span>Início: ${formatDateTimeForDisplay(event.startTime)}</span>
-            <span>Fim: ${formatDateTimeForDisplay(event.endTime)}</span>
-            ${camHtml}
+            <div>
+                <strong>Local: ${marketName}</strong>
+                <span>Início: ${formatDateTimeForDisplay(event.startTime)}</span>
+                <span>Fim: ${formatDateTimeForDisplay(event.endTime)}</span>
+                ${camHtml}
+            </div>
+            <div class="event-actions">
+                <label class="event-status-checkbox">
+                    <input type="checkbox" ${isSeen ? 'checked' : ''}> Evento Visto
+                </label>
+                <button class="btn-primary event-details-button">Ver Detalhes</button>
+            </div>
         `;
+        
+        const checkbox = li.querySelector('.event-status-checkbox input[type="checkbox"]');
+        if (checkbox) {
+            checkbox.addEventListener('change', (e) => {
+                const eventId = event.idEvent;
+                const isChecked = e.target.checked;
+                onEventSeenChange(eventId, isChecked);
+            });
+        }
 
-        li.addEventListener('click', () => onEventSelect(event));
+        const detailsButton = li.querySelector('.event-details-button');
+        if (detailsButton) {
+            detailsButton.addEventListener('click', () => {
+                onEventDetailsSelect(event);
+            });
+        }
+
         eventsList.appendChild(li);
     });
 }
@@ -73,12 +111,15 @@ export function initAppScreen(
     eventsMessage,
     loadingIndicator,
     eventsList,
+    viewReportButton,
     apiBaseUrl,
     authTokenKey,
     onLogout,
-    onEventSelect,
+    onEventDetailsSelect,
+    onEventSeenChange,
     displayMessage,
-    toggleLoading
+    toggleLoading,
+    onEventsFetched
 ) {
     async function fetchEvents() {
         const token = localStorage.getItem(authTokenKey);
@@ -127,7 +168,11 @@ export function initAppScreen(
 
             const result = await response.json();
             const events = result.content || [];
-            renderEvents(events, eventsList, eventsMessage, displayMessage, onEventSelect);
+
+            if (onEventsFetched) {
+                onEventsFetched(events); 
+            }
+            renderEvents(events, eventsList, eventsMessage, displayMessage, onEventDetailsSelect, onEventSeenChange);
         } catch (err) {
             displayMessage(eventsMessage, 'Erro de rede ao buscar eventos.', 'error');
             console.error('Erro na requisição:', err);
@@ -143,8 +188,12 @@ export function initAppScreen(
 
     fetchEventsButton?.addEventListener('click', fetchEvents);
 
+    viewReportButton?.addEventListener('click', () => {
+        console.log("Botão 'Ver Relatório' clicado.");
+    });
+
     return {
         setDefaultDateFilters: () => setDefaultDateFilters(startDateInput, endDateInput),
-        fetchEvents
+        fetchEvents,
     };
 }
