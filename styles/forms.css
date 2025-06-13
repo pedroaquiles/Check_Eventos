@@ -1,0 +1,42 @@
+.form-group {
+    margin-bottom: 15px;
+    width: 100%;
+    max-width: 300px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    text-align: left;
+}
+
+.form-group input[type="text"],
+.form-group input[type="password"],
+.form-group input[type="datetime-local"] {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+input[type="datetime-local"]::-webkit-datetime-edit {
+    color: #888;
+}
+
+input[type="datetime-local"]::before {
+    content: attr(placeholder);
+    width: 100%;
+    color: #888;
+}
+
+input[type="datetime-local"]:focus::before,
+input[type="datetime-local"]:not(:placeholder-shown)::before {
+    content: "";
+}
+
+input[type="datetime-local"]:not(:valid)::before {
+    content: "Selecione a data e hora";
+    color: #888;
+}

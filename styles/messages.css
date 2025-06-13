@@ -1,0 +1,32 @@
+.message {
+    margin-top: 15px;
+    padding: 10px;
+    border-radius: 5px;
+    font-weight: bold;
+    display: none;
+    width: 100%;
+    max-width: 300px;
+}
+
+.message.active {
+    display: block;
+}
+
+.message.error {
+    background-color: #ffe0e0;
+    color: #cc0000;
+    border: 1px solid #cc0000;
+}
+
+.message.success {
+    background-color: #e6ffe6;
+    color: #008000;
+    border: 1px solid #008000;
+}
+
+.loading {
+    text-align: center;
+    font-style: italic;
+    color: #666;
+    margin-top: 20px;
+}

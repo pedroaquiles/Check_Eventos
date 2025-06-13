@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CheckEvents - Gerenciador de Eventos</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app-container">
+        <section id="home-screen" class="screen active">
+            <nav class="navbar">
+                <div class="navbar-brand">CheckEvents</div>
+                <ul class="navbar-menu-desktop" id="navbar-menu-desktop">
+                    <li>
+                        <button id="nav-go-to-login-button-desktop" class="btn-link">
+                            Login
+                            <svg class="icon-login" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-4a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h4a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 10.5 2h-4A1.5.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0z"/>
+                                <path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708L8.207 4.543a.5.5 0 0 0-.708.708L10.293 7.5H3.5a.5.5 0 0 0 0 1h6.793l-2.794 2.793a.5.5 0 0 0 .708.708l3.647-3.647z"/>
+                            </svg>
+                        </button>
+                    </li>
+                </ul>
+                <div class="navbar-toggle" id="navbar-toggle">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </div>
+            </nav>
+
+            <div class="home-content">
+                <header>
+                    <h1>Bem-vindo ao CheckEvents!</h1>
+                </header>
+                <p class="tagline">Sua ferramenta de gerenciamento de Eventos</p>
+            </div>
+
+            <div id="sidebar-overlay" class="sidebar-overlay"></div>
+
+            <div id="sidebar-menu" class="sidebar-menu">
+                <ul class="sidebar-nav-list">
+                    <li>
+                        <button id="sidebar-go-to-login-button-mobile" class="btn-primary sidebar-btn-login">
+                            Login
+                            <svg class="icon-login" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-4a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h4a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 10.5 2h-4A1.5.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0z"/>
+                                <path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708L8.207 4.543a.5.5 0 0 0-.708.708L10.293 7.5H3.5a.5.5 0 0 0 0 1h6.793l-2.794 2.793a.5.5 0 0 0 .708.708l3.647-3.647z"/>
+                            </svg>
+                        </button>
+                    </li>
+                    </ul>
+            </div>
+        </section>
+
+        <section id="login-screen" class="screen">
+            <header>
+                <h2>Faça Login para Continuar</h2>
+            </header>
+            <div class="form-group">
+                <label for="login-input">Login:</label>
+                <input type="text" id="login-input" placeholder="Seu login">
+            </div>
+            <div class="form-group">
+                <label for="password-input">Senha:</label>
+                <input type="password" id="password-input" placeholder="Sua senha">
+            </div>
+            <button id="login-button" class="btn-primary">Entrar</button>
+            <p id="login-message" class="message error"></p>
+            <button id="back-to-home-from-login" class="btn-primary">Voltar</button>
+        </section>
+
+        <section id="app-screen" class="screen">
+            <header>
+                <h1>Eventos Importados</h1>
+                <nav class="app-nav-buttons">
+                    <button id="view-report-button" class="btn-secondary">Ver Relatório de Eventos Vistos</button>
+                    <button id="logout-button" class="btn-logout">Sair</button>
+                </nav>
+            </header>
+
+            <div class="event-controls">
+                <div class="form-group">
+                    <label for="start-date-input">Data Inicial:</label>
+                    <input type="datetime-local" id="start-date-input">
+                </div>
+                <div class="form-group">
+                    <label for="end-date-input">Data Final:</label>
+                    <input type="datetime-local" id="end-date-input">
+                </div>
+                <button id="fetch-events-button" class="btn-primary">Buscar Eventos</button>
+            </div>
+
+            <p id="events-message" class="message"></p>
+            <div id="loading-indicator" class="loading" style="display: none;">Carregando eventos...</div>
+            <ul id="events-list">
+                </ul>
+        </section>
+
+        <section id="relatorio-screen" class="screen">
+            <header>
+                <h2>Eventos Vistos</h2>
+                <button id="back-to-events-from-report-button" class="btn-secondary">Voltar aos Eventos</button>
+            </header>
+            
+            <div class="report-filters">
+                <label for="filter-order">Filtros:</label>
+                <select id="filter-order">
+                    <option value="market_asc">Local (A-Z)</option>
+                    <option value="market_desc">Local (Z-A)</option>
+                    <option value="date_asc">Data (Crescente)</option>
+                    <option value="date_desc">Data (Decrescente)</option>
+                </select>
+            </div>
+
+            <p id="report-message" class="message"></p>
+            <ul id="report-events-list">
+                </ul>
+        </section>
+
+        <section id="details-screen" class="screen">
+            <header>
+                <h2>Detalhes do Evento</h2>
+                <button id="back-from-details-button" class="btn-secondary">Voltar</button>
+            </header>
+            <div class="event-details-content" id="event-details-content">
+                </div>
+        </section>
+    </div>
+
+    <script type="module" src="app.js"></script>
+</body>
+</html>

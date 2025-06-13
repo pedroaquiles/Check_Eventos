@@ -1,0 +1,112 @@
+#relatorio-screen header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 15px 20px;
+    border-bottom: 1px solid #eee;
+    background-color: #f8f9fa;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+#relatorio-screen header h2 {
+    font-size: 1.8rem;
+    color: #14532d;
+}
+
+.report-filters {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    width: 100%;
+    max-width: 400px;
+    justify-content: center;
+}
+
+.report-filters label {
+    font-weight: bold;
+    color: #555;
+}
+
+.report-filters select {
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    background-color: white;
+    cursor: pointer;
+}
+
+#report-message {
+    margin-top: 15px;
+}
+
+#report-events-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+    width: 100%;
+}
+
+#report-events-list li {
+    background-color: #e6ffe6;
+    border: 1px solid #a8e6a8;
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    text-align: left;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+#report-events-list li:hover {
+    background-color: #d9f7d9;
+}
+
+#report-events-list li strong {
+    color: #2e8b57;
+    font-size: 1.1rem;
+}
+
+#report-events-list li span {
+    font-size: 0.9rem;
+    color: #444;
+}
+
+@media (max-width: 767px) {
+    #relatorio-screen header {
+        flex-direction: column;
+        gap: 10px;
+    }
+    #relatorio-screen header h2 {
+        font-size: 1.3rem;
+    }
+    #relatorio-screen header button {
+        margin-left: 0;
+    }
+    .report-filters {
+        flex-direction: column;
+        align-items: center;
+    }
+    .report-filters select {
+        width: 100%;
+        max-width: 250px;
+    }
+}
+@media (min-width: 768px) {
+    #relatorio-screen header h2 {
+        font-size: 2.2rem;
+    }
+    #report-events-list li {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+}

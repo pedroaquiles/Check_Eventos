@@ -1,0 +1,215 @@
+#app-screen header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 15px 20px;
+    border-bottom: 1px solid #eee;
+    background-color: #f8f9fa;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+#app-screen header h1 {
+    font-size: 2rem;
+    color: #14532d;
+}
+
+#login-screen header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 15px 20px;
+    border-bottom: 1px solid #eee;
+    background-color: #e6ffe6;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+#login-screen header h2 {
+    font-size: 2rem;
+    color: #14532d;
+}
+
+.app-nav-buttons {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.event-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 25px;
+    align-items: flex-end;
+    width: 100%;
+}
+
+.event-controls .form-group {
+    flex: 1 1 200px;
+    margin-bottom: 0;
+    max-width: unset;
+}
+
+.event-controls button {
+    flex-grow: 1;
+    min-width: 150px;
+    margin-top: 0;
+}
+
+#events-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+    width: 100%;
+}
+
+#events-list li {
+    background-color: #f9f9f9;
+    border: 1px solid #eee;
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    text-align: left;
+    position: relative;
+}
+
+#events-list li strong {
+    color: #4CAF50;
+    font-size: 1.1rem;
+}
+
+#events-list li span {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.event-status-checkbox {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.85rem;
+    color: #555;
+}
+
+.event-status-checkbox input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+    margin: 0;
+}
+
+.event-details-button {
+    background-color: #fff;
+    color: #4CAF50;
+    border: 2px solid #4CAF50;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: background-color 0.3s, color 0.3s;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+    align-self: flex-end;
+}
+
+.event-details-button:hover {
+    background-color: #4CAF50; 
+    color: #fff;
+}
+
+@media (max-width: 767px) {
+    #app-screen header {
+        flex-direction: column;
+        gap: 10px;
+    }
+    #app-screen header h1 {
+        font-size: 1.5rem;
+    }
+    #app-screen header button {
+        margin-left: 0;
+    }
+    .app-nav-buttons {
+        flex-direction: column;
+        width: 100%;
+        gap: 5px;
+        align-items: center;
+    }
+    .app-nav-buttons button {
+        width: 100%;
+        margin: 0 auto;
+        display: block;
+    }
+    .event-controls {
+        flex-direction: column;
+        align-items: center;
+    }
+    .event-controls .form-group,
+    .event-controls button {
+        width: 100%;
+        max-width: 300px;
+    }
+    #events-list li {
+        padding-right: 50px;
+    }
+    .event-status-checkbox {
+        position: static;
+        justify-content: flex-end;
+        width: 100%;
+        margin-top: 10px;
+    }
+    .event-status-checkbox input[type="checkbox"] {
+        width: 18px;
+        height: 18px;
+        cursor: pointer;
+        margin: 0;
+        accent-color: #4CAF50;
+    }
+}
+
+@media (min-width: 768px) {
+    #app-screen header h1 {
+        font-size: 2.5rem;
+    }
+    .event-controls {
+        flex-wrap: nowrap;
+    }
+    .event-controls .form-group {
+        flex: 0 1 auto;
+        max-width: 250px;
+    }
+    .event-controls button {
+        flex-grow: 0;
+        min-width: unset;
+    }
+    #events-list li {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding-right: 120px;
+    }
+    .event-status-checkbox {
+        position: absolute;
+        top: 50%;
+        right: 10px;
+        transform: translateY(-50%);
+    }
+    .event-status-checkbox input[type="checkbox"] {
+        width: 18px;
+        height: 18px;
+        cursor: pointer;
+        margin: 0;
+        accent-color: #4CAF50;
+    }
+}
