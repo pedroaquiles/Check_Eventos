@@ -1,16 +1,13 @@
-/* style.css */
-
-/* Imports */
 @import url('./styles/base.css');
-@import url('./styles/button.css');
+@import url('./styles/buttons.css');
 @import url('./styles/forms.css');
 @import url('./styles/messages.css');
 @import url('./styles/navbar.css');
 @import url('./styles/home.css');
 @import url('./styles/app-main.css');
-@import url('./styles/relatorio.css'); /* NOVO */
+@import url('./styles/relatorio.css');
+@import url('./styles/details.css');
 
-/* Estilos de layout principais do contêiner da aplicação */
 #app-container {
     background-color: #fff;
     border-radius: 8px;
@@ -24,7 +21,6 @@
     flex-direction: column;
 }
 
-/* Telas (Home, Login, App, Relatório) */
 .screen {
     display: none;
     width: 100%;
@@ -33,14 +29,13 @@
     justify-content: flex-start;
     text-align: center;
     flex-grow: 1;
-    padding: 30px; /* Adicionar padding aqui para o conteúdo */
+    padding: 30px;
 }
 
 .screen.active {
     display: flex;
 }
 
-/* Responsividade para Telas Maiores (Desktop) */
 @media (min-width: 768px) {
     #app-container {
         padding: 0;
