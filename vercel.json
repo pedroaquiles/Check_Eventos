@@ -1,8 +1,8 @@
 {
   "rewrites": [
     {
-      "source": "/api/",
-      "destination": "https://segmarket-dash-sandbox-api.azuremicroservices.io"
+      "source": "/api/:path*",
+      "destination": "https://segmarket-dash-sandbox-api.azuremicroservices.io/:path*"
     }
   ]
 }
